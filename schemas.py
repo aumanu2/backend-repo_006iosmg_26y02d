@@ -38,11 +38,13 @@ class Product(BaseModel):
     category: str = Field(..., description="Product category")
     in_stock: bool = Field(True, description="Whether product is in stock")
 
-# Add your own schemas here:
-# --------------------------------------------------
-
-# Note: The Flames database viewer will automatically:
-# 1. Read these schemas from GET /schema endpoint
-# 2. Use them for document validation when creating/editing
-# 3. Handle all database operations (CRUD) directly
-# 4. You don't need to create any database endpoints!
+# Chat message schema
+class Message(BaseModel):
+    """
+    Chat messages collection schema
+    Collection name: "message"
+    """
+    username: str = Field(..., description="Sender display name")
+    text: Optional[str] = Field(None, description="Message text")
+    file_url: Optional[str] = Field(None, description="Public URL for uploaded file/image")
+    content_type: Optional[str] = Field(None, description="MIME type of uploaded file")
